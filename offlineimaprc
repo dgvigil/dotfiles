@@ -15,10 +15,9 @@ localfolders = ~/Mail/
 [Repository EXCHANGE]
 maxconnections = 3
 type = IMAP
-remotehost = mail.sandia.gov
-remoteuser = dgvigi
+remotehost = mail.server.com
+remoteuser = dgvigil
 remotepass = 
 auth_mechanisms = PLAIN, LOGIN
 remoteport = 993
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 realdelete = yes

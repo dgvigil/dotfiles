@@ -128,7 +128,7 @@ set forward_quote                    # include message in forwards
 set editor = "vim"        # Use terminal Vim to compose email.
 
 # Outgoing -------------
-set from     = "dgvigi@sandia.gov"
+set from     = "dgvigil@server.com"
 set sendmail = "/usr/local/bin/msmtp -a EXCHANGE"
 set sendmail_wait = 0
 unset record
