@@ -28,8 +28,6 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  CtrlP stuff
-=======
->>>>>>> cf3b9a30972bccfd4a5d80ff568f7397e584a194
 " Select your Leader key
 let mapleader = "\<Space>"
 nnoremap <Leader>p :CtrlP<CR>
