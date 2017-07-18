@@ -1,0 +1,3 @@
+[core]
+	excludesfile = /ascldap/users/dgvigi/.gitignore
+	pager = less -F -X
