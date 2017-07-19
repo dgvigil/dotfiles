@@ -7,20 +7,21 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'airblade/vim-gitgutter.git'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'flazz/vim-colorschemes.git'
 Plugin 'lepture/vim-jinja.git'
-Plugin 'airblade/vim-gitgutter.git'
-Plugin 'tpope/vim-rails.git'
-Plugin 'tpope/vim-fugitive.git'
-Plugin 'Yggdroot/indentLine'
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-endwise'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-fugitive.git'
+Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-rails.git'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'Yggdroot/indentLine'
 Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " All of your Plugins must be added before the following line
