@@ -7,13 +7,16 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'Yggdroot/indentLine'
 Plugin 'airblade/vim-gitgutter.git'
+Plugin 'chr4/nginx.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'flazz/vim-colorschemes.git'
 Plugin 'lepture/vim-jinja.git'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tmux-plugins/vim-tmux'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-fugitive.git'
@@ -21,7 +24,6 @@ Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-rails.git'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'Yggdroot/indentLine'
 Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " All of your Plugins must be added before the following line
@@ -39,11 +41,6 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-
-set laststatus=2 " Always display the statusline in all windows
-set showtabline=2 " Always display the tabline, even if there is only one tab
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  CtrlP stuff
 " Select your Leader key
@@ -51,6 +48,7 @@ let mapleader = "\<Space>"
 nnoremap <Leader>p :CtrlP<CR>
 nnoremap <Leader>l :ls<CR>
 nnoremap <Leader>b :bp<CR>
+nnoremap <Leader>c :CtrlPClearCache<cr>
 nnoremap <silent> <Leader>n :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bn<CR>
 nnoremap <silent> <Leader>g :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:e#<CR>
 nnoremap <Leader>1 :1b<CR>
@@ -66,11 +64,13 @@ nnoremap <Leader>0 :10b<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set history=10000
-syntax on
-set number
-set pastetoggle=<Leader>q
+syntax on " Show syntax highlighting
+set number " Show line numbers
+set pastetoggle=<Leader>q " Turn paste mode on
+set laststatus=2 " Always display the statusline in all windows
+set showtabline=2 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " stolen from https://robots.thoughtbot.com/faster-grepping-in-vim
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
@@ -88,12 +88,18 @@ endif
 " bind \ (backward slash) to grep shortcut
 command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" show existing tab with 4 spaces width
+" show existing tab with 2 spaces width
 set tabstop=2
-" when indenting with '>', use 4 spaces width
+" when indenting with '>', use 2 spaces width
 set shiftwidth=2
-" On pressing tab, insert 4 spaces
+" On pressing tab, insert 2 spaces
 set expandtab
 
+" Adding a line for 80 character column
+let &colorcolumn="80,".join(range(120,999),",")
+" Make it purdy
+colorscheme molokai
+"Every time the user issues a :w command, Vim will automatically remove all
+"trailing whitespace before saving.
+autocmd BufWritePre * %s/\s\+$//e
