@@ -1,3 +1,5 @@
+[user]
+  name = Dave G Vigil SR
 [core]
-	excludesfile = /ascldap/users/dgvigi/.gitignore
-	pager = less -F -X
+  excludesfile = /ascldap/users/dgvigi/.gitignore
+  pager = less -F -X
