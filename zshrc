@@ -27,7 +27,8 @@ alias ccat="pygmentize -g"
 export EDITOR='vim'
 source ~/.bin/tmuxinator.zsh
 # Powerline prompt requierment
-source /home/dgvigi/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+#source /home/dgvigi/.local/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
+source /usr/local/lib/python3.5/dist-packages/powerline/bindings/zsh/powerline.zsh
 
 #ruby oracle bundle requirement
 export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_1
@@ -50,5 +51,5 @@ export RVM_PROXY=$http_proxy:$rvm_proxy
 # These lines must stay last
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 #export PATH="$HOME/.rvm/bin:$PATH"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 # Load RVM into a shell session *as a function*
