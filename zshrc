@@ -1,11 +1,18 @@
+export PATH="~/.local/bin:$PATH"
 export TERM="xterm-256color"
 export ZSH=/ascldap/users/dgvigi/.oh-my-zsh
+zsh_new_mail_joined () {
+  echo "  `find ~/Mail/INBOX/new -type f | wc -l`"
+}
 POWERLEVEL9K_MODE='awesome-fontconfig'
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv rvm history time )
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon root_indicator dir dir_writable zsh_new_mail_joined vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context root_indicator dir dir_writable vcs)
 ZSH_THEME="powerlevel9k/powerlevel9k"
-plugins=(git vagrant vim rails)
+plugins=(git vagrant vim rails virtualenv django)
 source $ZSH/oh-my-zsh.sh
 
-export no_proxy="localhost,.sandia.gov,ceecloud.sandia.gov,10.202.0.0/16,10.230.0.0/16,cee-hipchat.sandia.gov"
+export no_proxy="localhost,sandia.gov,ceecloud.sandia.gov,10.202.0.0/16,10.230.0.0/16,*.sandia.gov,cee-hipchat.sandia.gov"
 alias go="ssh -X ceesrv02.sandia.gov"
 alias ll="ls -lah"
 alias egrep="egrep --color='always'"
@@ -23,15 +30,15 @@ alias nile="echo 'cd ~/Projects/CEE-Dev/nile/ ' && cd ~/Projects/CEE-Dev/nile/ "
 alias ceedo="echo 'cd ~/Projects/CEE-Dev/cee_do/ ' && cd ~/Projects/CEE-Dev/cee_do/ "
 alias ceecond="echo 'cd ~/Projects/CEE/cee-conductor/ ' && cd ~/Projects/CEE/cee-conductor/ "
 alias ccat="pygmentize -g"
+alias kk="kinit -f -r 90d -l 90d -p dgvigi && klist"
 
 export EDITOR='vim'
 source ~/.bin/tmuxinator.zsh
 # Powerline prompt requierment
-#source /home/dgvigi/.local/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
-source /usr/local/lib/python3.5/dist-packages/powerline/bindings/zsh/powerline.zsh
+source /home/dgvigi/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 #ruby oracle bundle requirement
-export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_1
+export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_2
 export ORACLE_HOME=/usr/lib/oracle/12.2/client64/
 
 export http_proxy="http://wwwproxy.sandia.gov:80/"
