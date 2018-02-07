@@ -1,6 +1,6 @@
 [user]
-  name = Dave G Vigil SR
-  email = dgvigi@sandia.gov
+	name = Dave G Vigil SR
+	email = dgvigi@sandia.gov
 [core]
   excludesfile = /ascldap/users/dgvigi/.gitignore
   pager = less -F -X
