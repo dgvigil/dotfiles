@@ -1,6 +1,6 @@
 export PATH="~/.local/bin:$PATH"
 export TERM="xterm-256color"
-export ZSH=/ascldap/users/dgvigi/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 zsh_new_mail_joined () {
   echo "  `find ~/Mail/INBOX/new -type f | wc -l`"
 }

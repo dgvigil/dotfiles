@@ -5,15 +5,15 @@ set nocompatible               " Be iMproved
 let g:mapleader="\<SPACE>"
 
 " Required:
-set runtimepath+=/ascldap/users/dgvigi/bin/repos/github.com/Shougo/dein.vim
+set runtimepath+=$HOME/bin/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/ascldap/users/dgvigi/bin/')
-  call dein#begin('/ascldap/users/dgvigi/bin/')
+if dein#load_state('$HOME/bin/')
+  call dein#begin('$HOME/bin/')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/ascldap/users/dgvigi/bin/repos/github.com/Shougo/dein.vim')
+  call dein#add('$HOME/bin/repos/github.com/Shougo/dein.vim')
 
   " Add or remove your plugins here:
   call dein#add('Raimondi/delimitMate')
@@ -56,7 +56,7 @@ if dein#load_state('/ascldap/users/dgvigi/bin/')
   call dein#add('Shougo/vimproc.vim', {'do': g:make})
 
  "" Tab completion
- let g:deoplete#sources#jedi#python_path = '/ascldap/users/dgvigi/anaconda3/bin/python'
+ let g:deoplete#sources#jedi#python_path = '$HOME/anaconda3/bin/python'
  let g:deoplete#enable_at_startup = 1
 
  "" Vim-Session

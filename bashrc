@@ -120,8 +120,8 @@ export EDITOR='vim'
 
 # Added by Canopy installer on 2017-04-10
 # VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make the bash prompt show that Canopy is active, otherwise 1
-alias activate_canopy="source '/ascldap/users/dgvigi/Enthought/Canopy_64bit/User/bin/activate'"
-# VIRTUAL_ENV_DISABLE_PROMPT=1 source '/ascldap/users/dgvigi/Enthought/Canopy_64bit/User/bin/activate'
+alias activate_canopy="source '$HOME/Enthought/Canopy_64bit/User/bin/activate'"
+# VIRTUAL_ENV_DISABLE_PROMPT=1 source '$HOME/Enthought/Canopy_64bit/User/bin/activate'
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
