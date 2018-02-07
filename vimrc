@@ -21,6 +21,7 @@ Plugin 'tpope/vim-endwise'
 "Plugin 'tpope/vim-rails.git'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'python-mode/python-mode'
 Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " All of your Plugins must be added before the following line
