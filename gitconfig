@@ -4,4 +4,3 @@
 [core]
   excludesfile = $HOME/.gitignore
   pager = less -F -X
-
