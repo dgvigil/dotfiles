@@ -1,6 +1,6 @@
 [user]
 	name = Dave G Vigil SR
-	email = dgvigi@sandia.gov
+	email = dgvigil@gmail.com
 [core]
   excludesfile = $HOME/.gitignore
   pager = less -F -X

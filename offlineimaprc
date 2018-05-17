@@ -1,8 +1,8 @@
 [general]
 ui = TTY.TTYUI
-accounts = SANDIA
+accounts = BLAH
 
-[Account SANDIA]
+[Account BLAH]
 localrepository = Local
 remoterepository = EXCHANGE
 #status_backend = sqlite

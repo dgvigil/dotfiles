@@ -1,35 +1,38 @@
-export PATH="$HOME/.local/bin:$HOME/anaconda3/bin:$PATH"
-export TERM="xterm-256color"
-export ZSH=$HOME/.oh-my-zsh
-POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv rvm history time )
+export PATH=$HOME/anaconda3/bin:$HOME/bin:$PATH:/usr/local/sbin
+export ZSH=~/.oh-my-zsh
+
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda rvm history time )
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context root_indicator dir dir_writable vcs)
 ZSH_THEME="powerlevel9k/powerlevel9k"
-plugins=(git vagrant vim rails virtualenv django)
+
+HIST_STAMPS="yyyy-mm-dd"
+plugins=(
+  git
+  zsh-autosuggestions
+  git-flow-completion
+  colorize
+  vi-mode
+  docker
+  docker-compose
+  rvm
+  brew
+  osx
+  battery
+)
+
 source $ZSH/oh-my-zsh.sh
+export HOMEBREW_GITHUB_API_TOKEN="REDACTED"
 
-export no_proxy="localhost,sandia.gov,ceecloud.sandia.gov,10.202.0.0/16,10.230.0.0/16,*.sandia.gov,cee-hipchat.sandia.gov"
-alias go="ssh -X ceesrv02.sandia.gov"
+alias disableprox="for i in $(env | grep _proxy | cut -d'=' -f1); do unset $i ;done"
 alias ll="ls -lah"
-alias egrep="egrep --color='always'"
-alias grep="egrep --color='always'"
-alias n='nmap -sT -P0 -vv -p 1-65353 -T5'
-alias grep="egrep --color='always'"
-alias ccat="pygmentize -g"
-alias kk="kinit -f -r 90d -l 90d -p dgvigi && klist"
-alias vim="/usr/bin/nvim"
-alias v="/usr/bin/nvim"
-alias ssh="ssh -Y"
+alias cindiesbox="ssh 10.166.60.9 -l dave"
 
-export EDITOR='nvim'
-source ~/.bin/tmuxinator.zsh
-# Powerline prompt requierment
-source $HOME/.local/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.iterm2_shell_integration.zsh
+eval $(thefuck --alias)
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
-# These lines must stay last
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-#export PATH="$HOME/.rvm/bin:$PATH"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-# Load RVM into a shell session *as a function*
-
+export PATH="$PATH:$HOME/.rvm/bin"
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"

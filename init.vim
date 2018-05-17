@@ -16,26 +16,21 @@ if dein#load_state('$HOME/bin/')
   call dein#add('$HOME/bin/repos/github.com/Shougo/dein.vim')
 
   " Add or remove your plugins here:
-  call dein#add('Raimondi/delimitMate')
-  call dein#add('ShirajG/golden-ratio')
   call dein#add('Shougo/deol.nvim')
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Yggdroot/indentLine')
   call dein#add('airblade/vim-gitgutter')
-  call dein#add('airblade/vim-gitgutter.git')
   call dein#add('avelino/vim-bootstrap-updater')
   call dein#add('bronson/vim-trailing-whitespace')
   call dein#add('ekalinin/Dockerfile.vim')
-  call dein#add('jistr/vim-nerdtree-tabs')
   call dein#add('junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' })
   call dein#add('junegunn/fzf.vim')
   call dein#add('majutsushi/tagbar')
   call dein#add('ngmy/vim-rubocop')
   call dein#add('ntpeters/vim-better-whitespace')
   call dein#add('rodjek/vim-puppet')
-  call dein#add('scrooloose/nerdtree', { 'on': 'NERDTreeToggle' })
   call dein#add('scrooloose/syntastic')
   call dein#add('sheerun/vim-polyglot')
   call dein#add('tmux-plugins/vim-tmux')
@@ -56,7 +51,8 @@ if dein#load_state('$HOME/bin/')
   call dein#add('Shougo/vimproc.vim', {'do': g:make})
 
  "" Tab completion
- let g:deoplete#sources#jedi#python_path = '$HOME/anaconda3/bin/python'
+ let g:python3_host_prog = '/Users/dgvigi/anaconda3/envs/neovim2/bin/python'
+ let g:deoplete#sources#jedi#python_path = '/Users/dgvigi/anaconda3/envs/neovim2/bin/python'
  let g:deoplete#enable_at_startup = 1
 
  "" Vim-Session
@@ -80,6 +76,8 @@ if dein#load_state('$HOME/bin/')
  " python
  "" Python Bundle
   call dein#add('davidhalter/jedi-vim')
+  call dein#add('zchee/deoplete-jedi')
+
   call dein#add('raimon49/requirements.txt.vim', {'for': 'requirements'})
 
 
@@ -369,7 +367,6 @@ if executable('rg')
 endif
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>e :FZF -m<CR>
 
 " snippets
@@ -402,10 +399,6 @@ if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
 endif
 
-noremap YY "+y<CR>
-noremap <leader>p "+gP<CR>
-noremap XX "+x<CR>
-
 if has('macunix')
   " pbcopy for OSX copy/paste
   vmap <C-x> :!pbcopy<CR>
@@ -413,10 +406,7 @@ if has('macunix')
 endif
 
 "" Buffer nav
-noremap <leader>z :bp<CR>
-noremap <leader>q :bp<CR>
-noremap <leader>x :bn<CR>
-noremap <leader>w :bn<CR>
+noremap <leader>n :bp<CR>
 
 "" Close buffer
 noremap <leader>c :bd<CR>
@@ -509,7 +499,7 @@ let g:tagbar_type_ruby = {
 map <Leader>t :call RunCurrentSpecFile()<CR>
 "map <Leader>s :call RunNearestSpec()<CR>
 "map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+"map <Leader>a :call RunAllSpecs()<CR>
 let g:rspec_command = ':call RunMySpecs("{spec}")'
 
 function! RunMySpecs(specs)
@@ -524,17 +514,6 @@ else
   packadd! matchit
 endif
 
-" Ruby refactory
-nnoremap <leader>rap  :RAddParameter<cr>
-nnoremap <leader>rcpc :RConvertPostConditional<cr>
-nnoremap <leader>rel  :RExtractLet<cr>
-vnoremap <leader>rec  :RExtractConstant<cr>
-vnoremap <leader>relv :RExtractLocalVariable<cr>
-nnoremap <leader>rit  :RInlineTemp<cr>
-vnoremap <leader>rrlv :RRenameLocalVariable<cr>
-vnoremap <leader>rriv :RRenameInstanceVariable<cr>
-vnoremap <leader>rem  :RExtractMethod<cr>
-
 
 "*****************************************************************************
 "*****************************************************************************
@@ -547,11 +526,6 @@ endif
 "*****************************************************************************
 "" Convenience variables
 "*****************************************************************************
-" ---------- NERDTree config section ----------
-" Map CTRL-n to toggle NERDTree
-map <C-n> :NERDTreeToggle<CR>
-map <leader>n :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1
 
 " vim-airline
 if !exists('g:airline_symbols')
@@ -590,7 +564,13 @@ else
 endif
 
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " change the leader key from ',' to spacebar
 let g:mapleader="\<SPACE>"
+
+"" Buffer nav
+noremap <leader>j :bp!<CR>
+
+"" Close buffer
+noremap <leader>c :bd<CR>
+
