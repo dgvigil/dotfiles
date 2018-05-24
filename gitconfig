@@ -1,6 +1,11 @@
 [user]
 	name = Dave G Vigil SR
 	email = dgvigil@gmail.com
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
 [core]
-  excludesfile = $HOME/.gitignore
-  pager = less -F -X
+    excludesfile = $HOME/.gitignore
+    pager = less -F -X
