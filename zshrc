@@ -1,12 +1,12 @@
 export PATH=$HOME/anaconda3/bin:$HOME/bin:$PATH:/usr/local/sbin
 export ZSH=~/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
 
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda rvm history time )
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context root_indicator dir dir_writable vcs)
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
+source $ZSH/oh-my-zsh.sh
 HIST_STAMPS="yyyy-mm-dd"
 plugins=(
   git
