@@ -337,6 +337,7 @@ augroup vimrc-ruby
   autocmd!
   autocmd BufNewFile,BufRead *.rb,*.rbw,*.gemspec setlocal filetype=ruby
   autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab softtabstop=2
+  autocmd FileType ruby compiler ruby
   autocmd FileType puppet setlocal expandtab shiftwidth=2 softtabstop=2 colorcolumn=140 ai nu nowrap cul |
         \ let g:syntastic_puppet_puppetlint_args = "--no-80chars-check --no-140chars-check  --no-autoloader_layout-check --no-2sp_soft_tabs-check --no-ensure_first_param-check"
         " The previous line is needed to disable some checks in syntastic's puppet-lint checker. run `puppet-lint --help`
