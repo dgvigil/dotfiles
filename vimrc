@@ -113,6 +113,7 @@ nmap <Leader>r :RuboCop -a<CR>
 "*****************************************************************************
 syntax on
 set ruler
+set colorcolumn=81
 set number
 
 let no_buffers_menu=1
@@ -307,7 +308,7 @@ nnoremap <silent> <leader><space> :noh<cr>
 
 " python
 " YouCompleteMe
-let g:ycm_python_binary_path = '/usr/local/bin/python3'
+let g:ycm_python_binary_path = '/home/dave3226/anaconda3/bin/python3'
 " vim-python
 augroup vimrc-python
   autocmd!

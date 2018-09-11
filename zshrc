@@ -8,10 +8,12 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 plugins=(git zsh-autosuggestions colorize ruby rvm vagrant berkshelf)
 HIST_STAMPS="yyyy-mm-dd"
 source $ZSH/oh-my-zsh.sh
-
+export GOPATH="/home/dave3226/go"
+export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
 
 alias ll="ls -lah"
 alias egrep"egrep --color --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
+alias n='nmap -sT -P0 -vv -p 1-65353 -T5'
 
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
