@@ -55,6 +55,9 @@ call plug#begin()
   Plug 'thoughtbot/vim-rspec'
   Plug 'ecomba/vim-ruby-refactoring'
 
+  Plug 'moll/vim-node'
+  Plug 'digitaltoad/vim-pug'
+
   " Required:
 call plug#end()
 

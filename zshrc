@@ -11,7 +11,7 @@ source $ZSH/oh-my-zsh.sh
 export GOPATH="/home/dave3226/go"
 export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
 
-alias ll="ls -lah"
+alias ll="ls -lAhF"
 alias egrep"egrep --color --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias n='nmap -sT -P0 -vv -p 1-65353 -T5'
 
