@@ -12,11 +12,11 @@ endif
 
 call plug#begin()
   " Add or remove your plugins here:
+  Plug 'Valloric/YouCompleteMe'
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-gitgutter'
   Plug 'avelino/vim-bootstrap-updater'
   Plug 'bronson/vim-trailing-whitespace'
-  Plug 'davidhalter/jedi-vim'
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
@@ -37,11 +37,7 @@ call plug#begin()
   Plug 'vim-scripts/CSApprox'
   Plug 'vim-scripts/grep.vim'
   Plug 'vim-syntastic/syntastic'
-  Plug 'Valloric/YouCompleteMe'
- "" Vim-Session
-  Plug 'xolox/vim-misc'
-  Plug 'xolox/vim-session'
-  Plug 'honza/vim-snippets'
+  Plug 'martinda/Jenkinsfile-vim-syntax'
  "" Color
   Plug 'tomasr/molokai'
  " python
@@ -311,7 +307,7 @@ nnoremap <silent> <leader><space> :noh<cr>
 
 " python
 " YouCompleteMe
-let g:ycm_python_binary_path = '/home/dave3226/anaconda3/bin/python3'
+let g:ycm_python_binary_path = '/opt/conda/bin/python3'
 " vim-python
 augroup vimrc-python
   autocmd!
@@ -319,6 +315,9 @@ augroup vimrc-python
       \ formatoptions+=croq softtabstop=4
       \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
+
+" vim-jedi
+let g:jedi#usages_command = "<leader>p"
 
 " syntastic
 let g:syntastic_python_checkers=['python', 'flake8']
