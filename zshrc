@@ -8,7 +8,7 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history time )
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir dir_writable vcs)
 ZSH_THEME="powerlevel9k/powerlevel9k"
-plugins=(git zsh-autosuggestions colorize ruby kubectl vagrant berkshelf kitchen)
+plugins=(git zsh-autosuggestions colorize kubectl helm)
 HIST_STAMPS="yyyy-mm-dd"
 source $ZSH/oh-my-zsh.sh
 
