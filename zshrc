@@ -1,14 +1,14 @@
 export GOPATH="/home/dave3226/go"
-export PATH=/opt/conda/bin:$GOPATH/bin:$HOME/bin:$PATH:/usr/local/sbin
+export PATH=/opt/conda/bin:$GOPATH/bin:$HOME/bin:$PATH:/usr/local/sbin:/home/dave3226/Projects/istio-1.0.5/bin
 export ZSH=~/.oh-my-zsh
 export KUBECONFIG=$HOME/.kube/config
 
 POWERLEVEL9K_MODE='nerdfont-complete'
 #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status kubecontext anaconda history time )
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history time )
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(anaconda status)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir dir_writable vcs)
 ZSH_THEME="powerlevel9k/powerlevel9k"
-plugins=(git zsh-autosuggestions colorize kubectl helm)
+plugins=(git zsh-autosuggestions colorize kubectl helm conda)
 HIST_STAMPS="yyyy-mm-dd"
 source $ZSH/oh-my-zsh.sh
 
@@ -24,6 +24,7 @@ alias egrep"egrep --color --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias grep"egrep --color --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias n='nmap -sT -P0 -vv -p 1-65353 -T5'
 alias gs='git status'
+alias vim='/usr/local/bin/nvim'
 
 if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi
 

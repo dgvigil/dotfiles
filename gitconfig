@@ -10,3 +10,7 @@
     excludesfile = $HOME/.gitignore
     pager = less -F -X
 	editor = vim
+[credential "https://source.developers.google.com"]
+	helper = gcloud.sh
+[http]
+	cookiefile = /home/dave3226/.gitcookies

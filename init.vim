@@ -4,121 +4,57 @@ set nocompatible               " Be iMproved
 " change the leader key from ',' to spacebar
 let g:mapleader="\<SPACE>"
 
-" Required:
-set runtimepath+=$HOME/bin/repos/github.com/Shougo/dein.vim
-
-" Required:
-if dein#load_state('$HOME/bin/')
-  call dein#begin('$HOME/bin/')
-
-  " Let dein manage dein
-  " Required:
-  call dein#add('$HOME/bin/repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your plugins here:
-  call dein#add('Shougo/deol.nvim')
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Yggdroot/indentLine')
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('avelino/vim-bootstrap-updater')
-  call dein#add('bronson/vim-trailing-whitespace')
-  call dein#add('ekalinin/Dockerfile.vim')
-  call dein#add('junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' })
-  call dein#add('junegunn/fzf.vim')
-  call dein#add('majutsushi/tagbar')
-  call dein#add('ngmy/vim-rubocop')
-  call dein#add('ntpeters/vim-better-whitespace')
-  call dein#add('rodjek/vim-puppet')
-  call dein#add('scrooloose/syntastic')
-  call dein#add('sheerun/vim-polyglot')
-  call dein#add('tmux-plugins/vim-tmux')
-  call dein#add('tpope/vim-bundler')
-  call dein#add('tpope/vim-commentary')
-  call dein#add('tpope/vim-endwise')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('vim-ruby/vim-ruby')
-  call dein#add('vim-scripts/CSApprox')
-  call dein#add('vim-scripts/grep.vim')
-  call dein#add('vim-syntastic/syntastic')
-  let g:make = 'gmake'
-  if exists('make')
-          let g:make = 'make'
-  endif
-  call dein#add('Shougo/vimproc.vim', {'do': g:make})
-
- "" Tab completion
- let g:python3_host_prog = '/Users/dgvigi/anaconda3/envs/neovim2/bin/python'
- let g:deoplete#sources#jedi#python_path = '/Users/dgvigi/anaconda3/envs/neovim2/bin/python'
- let g:deoplete#enable_at_startup = 1
-
- "" Vim-Session
-  call dein#add('xolox/vim-misc')
-  call dein#add('xolox/vim-session')
-
- if v:version >= 703
-    call dein#add('Shougo/vimshell.vim')
- endif
-
-
-  call dein#add('honza/vim-snippets')
-
- "" Color
-  call dein#add('tomasr/molokai')
-
- "*****************************************************************************
- "" Custom bundles
- "*****************************************************************************
-
- " python
- "" Python Bundle
-  call dein#add('davidhalter/jedi-vim')
-  call dein#add('zchee/deoplete-jedi')
-
-  call dein#add('raimon49/requirements.txt.vim', {'for': 'requirements'})
-
-
- " ruby
-  call dein#add('tpope/vim-rails')
-  call dein#add('tpope/vim-rake')
-  call dein#add('tpope/vim-projectionist')
-  call dein#add('thoughtbot/vim-rspec')
-  call dein#add('ecomba/vim-ruby-refactoring')
-
-  " Required:
-  call dein#end()
-  call dein#save_state()
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+call plug#begin()
+  " Add or remove your plugins here:
+  Plug 'Valloric/YouCompleteMe'
+  Plug 'Yggdroot/indentLine'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'avelino/vim-bootstrap-updater'
+  Plug 'bronson/vim-trailing-whitespace'
+  Plug 'davidhalter/jedi-vim'
+  Plug 'digitaltoad/vim-pug'
+  Plug 'ecomba/vim-ruby-refactoring'
+  Plug 'ekalinin/Dockerfile.vim'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+  Plug 'junegunn/fzf.vim'
+  Plug 'majutsushi/tagbar'
+  Plug 'martinda/Jenkinsfile-vim-syntax'
+  Plug 'moll/vim-node'
+  Plug 'ngmy/vim-rubocop'
+  Plug 'ntpeters/vim-better-whitespace'
+  Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+  Plug 'rodjek/vim-puppet'
+  Plug 'scrooloose/syntastic'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'thoughtbot/vim-rspec'
+  Plug 'tmux-plugins/vim-tmux'
+  Plug 'tomasr/molokai'
+  Plug 'tpope/vim-bundler'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-projectionist'
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-rake'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'vim-scripts/CSApprox'
+  Plug 'vim-scripts/grep.vim'
+  Plug 'vim-syntastic/syntastic'
+  " Required:
+call plug#end()
 
 " Required:
 filetype plugin indent on
 syntax enable
 autocmd BufWritePre * %s/\s\+$//e
-
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
-"End dein Scripts-------------------------
-
-set nocompatible               " Be iMproved
-
-"*****************************************************************************
-"*****************************************************************************
-
-"" Include user's extra bundle
-if filereadable(expand("~/.config/nvim/local_bundles.vim"))
-  source ~/.config/nvim/local_bundles.vim
-endif
-
-" Required:
-filetype plugin indent on
-
 
 "*****************************************************************************
 "" Basic Setup
@@ -129,7 +65,6 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 set bomb
 set binary
-
 
 "" Fix backspace indent
 set backspace=indent,eol,start
@@ -166,18 +101,19 @@ let g:vimrubocop_config = '~/.rubocop.yml'
 let g:vimrubocop_keymap = 0
 nmap <Leader>r :RuboCop -a<CR>
 
-" session management
-let g:session_directory = "~/.config/nvim/session"
-let g:session_autoload = "no"
-let g:session_autosave = "yes"
-let g:session_command_aliases = 1
-
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
 syntax on
 set ruler
-set number
+set colorcolumn=81
+:set number relativenumber
+
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
@@ -190,26 +126,11 @@ set t_Co=256
 set guioptions=egmrti
 set gfn=Monospace\ 10
 
-if has("gui_running")
-  if has("gui_mac") || has("gui_macvim")
-    set guifont=Menlo:h12
-    set transparency=7
-  endif
-else
-  let g:CSApprox_loaded = 1
-
-  " IndentLine
-  let g:indentLine_enabled = 1
-  let g:indentLine_concealcursor = 0
-  let g:indentLine_char = '┆'
-  let g:indentLine_faster = 1
-
-endif
-
-
-"" Disable the blinking cursor.
-set gcr=a:blinkon0
-set scrolloff=3
+" IndentLine
+let g:indentLine_enabled = 1
+let g:indentLine_concealcursor = 0
+let g:indentLine_char = '┆'
+let g:indentLine_faster = 1
 
 "" Status bar
 set laststatus=2
@@ -240,21 +161,6 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
-
-"*****************************************************************************
-"" Abbreviations
-"*****************************************************************************
-"" no one is really happy until you have this shortcuts
-cnoreabbrev W! w!
-cnoreabbrev Q! q!
-cnoreabbrev Qall! qall!
-cnoreabbrev Wq wq
-cnoreabbrev Wa wa
-cnoreabbrev wQ wq
-cnoreabbrev WQ wq
-cnoreabbrev W w
-cnoreabbrev Q q
-cnoreabbrev Qall qall
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
@@ -339,15 +245,6 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 nnoremap <silent> <S-t> :tabnew<CR>
 
-"" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
-
-"" Opens an edit command with the path of the currently edited file filled in
-noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-"" Opens a tab edit command with the path of the currently edited file filled
-noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
 "" fzf.vim
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
@@ -357,6 +254,7 @@ let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/
 if executable('ag')
   let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
   set grepprg=ag\ --nogroup\ --nocolor
+  nnoremap <leader>a :Ag<CR>
 endif
 
 " ripgrep
@@ -388,58 +286,20 @@ let g:syntastic_aggregate_errors = 1
 nmap <silent> <F4> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
-" Disable visualbell
-set noerrorbells visualbell t_vb=
-if has('autocmd')
-  autocmd GUIEnter * set visualbell t_vb=
-endif
-
-"" Copy/Paste/Cut
-if has('unnamedplus')
-  set clipboard=unnamed,unnamedplus
-endif
-
-if has('macunix')
-  " pbcopy for OSX copy/paste
-  vmap <C-x> :!pbcopy<CR>
-  vmap <C-c> :w !pbcopy<CR><CR>
-endif
-
 "" Buffer nav
-noremap <leader>n :bp<CR>
-
-"" Close buffer
-noremap <leader>c :bd<CR>
+noremap <leader>p :bp<CR>
+noremap <leader>n :bn<CR>
 
 "" Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<cr>
-
-"" Switching windows
-noremap <C-j> <C-w>j
-noremap <leader>j <C-w>j
-noremap <C-k> <C-w>k
-noremap <leader>k <C-w>k
-noremap <C-l> <C-w>l
-noremap <leader>l <C-w>l
-noremap <C-h> <C-w>h
-noremap <leader>h <C-w>h
-
-"" Vmap for maintain Visual Mode after shifting > and <
-vmap < <gv
-vmap > >gv
-
-"" Move visual block
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
-"" Open current line on GitHub
-nnoremap <Leader>o :.Gbrowse<CR>
 
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
 
 " python
+" YouCompleteMe
+let g:ycm_python_binary_path = '/opt/conda/bin/python3'
 " vim-python
 augroup vimrc-python
   autocmd!
@@ -448,14 +308,8 @@ augroup vimrc-python
       \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
 
-" jedi-vim
-let g:jedi#popup_on_dot = 0
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "K"
-let g:jedi#show_call_signatures = "0"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#smart_auto_mappings = 0
+" vim-jedi
+let g:jedi#usages_command = "<leader>p"
 
 " syntastic
 let g:syntastic_python_checkers=['python', 'flake8']
@@ -478,6 +332,7 @@ augroup vimrc-ruby
   autocmd!
   autocmd BufNewFile,BufRead *.rb,*.rbw,*.gemspec setlocal filetype=ruby
   autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab softtabstop=2
+  autocmd FileType ruby compiler ruby
   autocmd FileType puppet setlocal expandtab shiftwidth=2 softtabstop=2 colorcolumn=140 ai nu nowrap cul |
         \ let g:syntastic_puppet_puppetlint_args = "--no-80chars-check --no-140chars-check  --no-autoloader_layout-check --no-2sp_soft_tabs-check --no-ensure_first_param-check"
         " The previous line is needed to disable some checks in syntastic's puppet-lint checker. run `puppet-lint --help`
@@ -506,22 +361,6 @@ function! RunMySpecs(specs)
   execute 'split | terminal bundle exec rake spec ' . a:specs
   execute feedkeys("\<c-\>\<c-n>")
 endfunction
-
-" For ruby refactory
-if has('nvim')
-  runtime! macros/matchit.vim
-else
-  packadd! matchit
-endif
-
-
-"*****************************************************************************
-"*****************************************************************************
-
-"" Include user's local vim config
-if filereadable(expand("~/.config/nvim/local_init.vim"))
-  source ~/.config/nvim/local_init.vim
-endif
 
 "*****************************************************************************
 "" Convenience variables
