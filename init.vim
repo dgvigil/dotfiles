@@ -12,6 +12,7 @@ endif
 
 call plug#begin()
   " Add or remove your plugins here:
+  Plug 'NLKNguyen/vim-maven-syntax'
   Plug 'Valloric/YouCompleteMe'
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-gitgutter'

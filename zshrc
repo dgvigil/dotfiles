@@ -1,11 +1,9 @@
-export GOPATH="/home/dave3226/go"
-export PATH=/opt/conda/bin:$GOPATH/bin:$HOME/bin:$PATH:/usr/local/sbin:/home/dave3226/Projects/istio-1.0.5/bin
+export PATH=/opt/conda/bin:$GOPATH/bin:$HOME/bin:$PATH:/usr/local/sbin:~/Projects/istio-1.0.5/bin:/usr/local/go/bin
 export ZSH=~/.oh-my-zsh
 export KUBECONFIG=$HOME/.kube/config
 
 POWERLEVEL9K_MODE='nerdfont-complete'
-#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status kubecontext anaconda history time )
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(anaconda status)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status kubecontext anaconda history time )
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir dir_writable vcs)
 ZSH_THEME="powerlevel9k/powerlevel9k"
 plugins=(git zsh-autosuggestions colorize kubectl helm conda)
@@ -45,3 +43,7 @@ fi
 unset __conda_setup
 # <<< conda init <<<
 
+ssh-add
+
+# configure hal auto-complete
+. /etc/bash_completion.d/hal
