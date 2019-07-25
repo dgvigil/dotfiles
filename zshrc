@@ -1,12 +1,14 @@
+export GOPATH=$HOME/go
 export PATH=/opt/conda/bin:$GOPATH/bin:$HOME/bin:$PATH:/usr/local/sbin:~/Projects/istio-1.0.5/bin:/usr/local/go/bin
 export ZSH=~/.oh-my-zsh
 export KUBECONFIG=$HOME/.kube/config
 
-POWERLEVEL9K_MODE='nerdfont-complete'
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status kubecontext anaconda history time )
+# POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_MODE='awesome-fontconfig'
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history time )
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator dir dir_writable vcs)
 ZSH_THEME="powerlevel9k/powerlevel9k"
-plugins=(git zsh-autosuggestions colorize kubectl helm conda)
+plugins=(git zsh-autosuggestions colorize kubectl conda)
 HIST_STAMPS="yyyy-mm-dd"
 source $ZSH/oh-my-zsh.sh
 
@@ -14,6 +16,7 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 eval $(thefuck --alias)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.fonts/*.sh
 
 alias ll="ls -lAhF"
 alias mv="mv -v"
@@ -23,8 +26,6 @@ alias grep"egrep --color --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias n='nmap -sT -P0 -vv -p 1-65353 -T5'
 alias gs='git status'
 alias vim='/usr/local/bin/nvim'
-
-if [ /usr/bin/kubectl ]; then source <(kubectl completion zsh); fi
 
 # added by Anaconda3 5.3.1 installer
 # >>> conda init >>>
@@ -43,7 +44,7 @@ fi
 unset __conda_setup
 # <<< conda init <<<
 
-ssh-add
-
 # configure hal auto-complete
 . /etc/bash_completion.d/hal
+
+ssh-add >/dev/null 2>&1
