@@ -300,7 +300,7 @@ nnoremap <silent> <leader><space> :noh<cr>
 
 " python
 " YouCompleteMe
-let g:ycm_python_binary_path = '/opt/conda/bin/python3'
+let g:ycm_python_binary_path = '/usr/local/bin/python3'
 " vim-python
 augroup vimrc-python
   autocmd!
@@ -350,6 +350,17 @@ let g:tagbar_type_ruby = {
         \ 'F:singleton methods'
     \ ]
 \ }
+
+" HTML
+" Ignore Apple's W3-invalid html code for pinned favicons
+let g:syntastic_html_tidy_ignore_errors = [ '<link> proprietary attribute "color"' ]
+let g:syntastic_html_tidy_ignore_errors = [
+    \   '<link> proprietary attribute "color"',
+    \   '<link> proprietary attribute "crossorigin"',
+    \   '<link> proprietary attribute "integrity"',
+    \   '<script> proprietary attribute "crossorigin"',
+    \   '<script> proprietary attribute "integrity"'
+    \ ]
 
 " RSpec.vim mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
