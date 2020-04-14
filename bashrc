@@ -115,6 +115,7 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+eval $(thefuck --alias)
 
 alias ll="ls -lAFG"
 alias gs="git status -sb"
