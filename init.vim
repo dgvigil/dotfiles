@@ -13,24 +13,22 @@ endif
 call plug#begin()
   " Add or remove your plugins here:
   Plug 'NLKNguyen/vim-maven-syntax'
-  Plug 'Valloric/YouCompleteMe'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-gitgutter'
   Plug 'avelino/vim-bootstrap-updater'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'davidhalter/jedi-vim'
   Plug 'digitaltoad/vim-pug'
-  Plug 'ecomba/vim-ruby-refactoring'
   Plug 'ekalinin/Dockerfile.vim'
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
   Plug 'majutsushi/tagbar'
-  Plug 'martinda/Jenkinsfile-vim-syntax'
-  Plug 'moll/vim-node'
-  Plug 'ngmy/vim-rubocop'
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
   Plug 'rodjek/vim-puppet'
+  Plug 'sakshamgupta05/vim-todo-highlight'
   Plug 'scrooloose/syntastic'
   Plug 'sheerun/vim-polyglot'
   Plug 'thoughtbot/vim-rspec'
@@ -56,6 +54,10 @@ call plug#end()
 filetype plugin indent on
 syntax enable
 autocmd BufWritePre * %s/\s\+$//e
+let g:deoplete#enable_at_startup = 1
+
+
+set termguicolors
 
 "*****************************************************************************
 "" Basic Setup
@@ -109,13 +111,15 @@ syntax on
 set ruler
 set colorcolumn=81
 :set number relativenumber
-
 :augroup numbertoggle
 :  autocmd!
 :  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 
+"---------------------------------
+" VIM TODO HIGHLIGHT
+"---------------------------------
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
   colorscheme molokai
@@ -154,6 +158,20 @@ nnoremap N Nzzzv
 if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
 endif
+
+let g:todo_highlight_config = {
+      \   'REVIEW': {},
+      \   'BUG': {},
+      \   'NOTE': {
+      \     'gui_fg_color': '#ffbd2a',
+      \     'gui_bg_color': '#ffffff',
+      \     'cterm_fg_color': '214',
+      \     'cterm_bg_color': 'white'
+      \   }
+      \ }
+
+" TODO: NOTE: FIXME: REVIEW: BUG:
+
 
 " vim-airline
 let g:airline_theme = 'powerlineish'
@@ -299,8 +317,6 @@ nnoremap <silent> <leader><space> :noh<cr>
 "*****************************************************************************
 
 " python
-" YouCompleteMe
-let g:ycm_python_binary_path = '/usr/local/bin/python3'
 " vim-python
 augroup vimrc-python
   autocmd!
@@ -425,3 +441,6 @@ noremap <leader>j :bp!<CR>
 "" Close buffer
 noremap <leader>c :bd<CR>
 
+
+syntax match TODOs ".*TODO.*\|.*BUG.*\|.*HACK.*"
+highlight TODOs ctermbg=red ctermfg=yellow term=bold,italic
