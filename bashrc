@@ -78,6 +78,7 @@ plugins=(
 
 source $OSH/oh-my-bash.sh
 
+export ARM_CLIENT_SECRET="0@1/Cga:Rpqk_7UOyiwXSrrHzOiSWlO3"
 export http_proxy=http://wwwproxy.sandia.gov:80
 export https_proxy=http://wwwproxy.sandia.gov:80
 export no_proxy="192.168.0.0/16,localhost,.sandia.gov,.srn.sandia.gov"

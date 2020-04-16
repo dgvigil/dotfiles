@@ -12,40 +12,23 @@ endif
 
 call plug#begin()
   " Add or remove your plugins here:
-  Plug 'NLKNguyen/vim-maven-syntax'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Yggdroot/indentLine'
   Plug 'airblade/vim-gitgutter'
-  Plug 'avelino/vim-bootstrap-updater'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'davidhalter/jedi-vim'
-  Plug 'digitaltoad/vim-pug'
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
-  Plug 'majutsushi/tagbar'
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
-  Plug 'rodjek/vim-puppet'
   Plug 'sakshamgupta05/vim-todo-highlight'
-  Plug 'scrooloose/syntastic'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'thoughtbot/vim-rspec'
   Plug 'tmux-plugins/vim-tmux'
   Plug 'tomasr/molokai'
-  Plug 'tpope/vim-bundler'
   Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-endwise'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-projectionist'
-  Plug 'tpope/vim-rails'
-  Plug 'tpope/vim-rake'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'vim-ruby/vim-ruby'
-  Plug 'vim-scripts/CSApprox'
-  Plug 'vim-scripts/grep.vim'
   Plug 'vim-syntastic/syntastic'
   " Required:
 call plug#end()
@@ -101,23 +84,18 @@ else
     set shell=/bin/sh
 endif
 
-" Rubocop config
-let g:vimrubocop_config = '~/.rubocop.yml'
-let g:vimrubocop_keymap = 0
-nmap <Leader>r :RuboCop -a<CR>
-
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
 syntax on
 set ruler
 set colorcolumn=81
-:set number relativenumber
-:augroup numbertoggle
-:  autocmd!
-:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-:augroup END
+set number norelativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+augroup END
 
 "---------------------------------
 " VIM TODO HIGHLIGHT
@@ -183,16 +161,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 
-" grep.vim
-nnoremap <silent> <leader>f :Rgrep<CR>
-let Grep_Default_Options = '-IR'
-let Grep_Skip_Files = '*.log *.db'
-let Grep_Skip_Dirs = '.git node_modules'
-
-" vimshell.vim
-let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-let g:vimshell_prompt =  '$ '
-
 " terminal emulation
 nnoremap <silent> <leader>sh :terminal<CR>
 
@@ -228,13 +196,6 @@ augroup vimrc-wrapping
   autocmd BufRead,BufNewFile *.txt call s:setupWrapping()
 augroup END
 
-"" make/cmake
-augroup vimrc-make-cmake
-  autocmd!
-  autocmd FileType make setlocal noexpandtab
-  autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
-augroup END
-
 set autoread
 
 "*****************************************************************************
@@ -245,26 +206,11 @@ set autoread
 noremap <Leader>H :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
 
-"" Git
-noremap <Leader>ga :Gwrite<CR>
-noremap <Leader>gc :Gcommit<CR>
-noremap <Leader>gsh :Gpush<CR>
-noremap <Leader>gll :Gpull<CR>
-noremap <Leader>gs :Gstatus<CR>
-noremap <Leader>gb :Gblame<CR>
-noremap <Leader>gd :Gvdiff<CR>
-noremap <Leader>gr :Gremove<CR>
-
 " session management
 nnoremap <leader>so :OpenSession<Space>
 nnoremap <leader>ss :SaveSession<Space>
 nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
-
-"" Tabs
-nnoremap <Tab> gt
-nnoremap <S-Tab> gT
-nnoremap <silent> <S-t> :tabnew<CR>
 
 "" fzf.vim
 set wildmode=list:longest,list:full
@@ -277,16 +223,6 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   nnoremap <leader>a :Ag<CR>
 endif
-
-" ripgrep
-if executable('rg')
-  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-  set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-endif
-
-cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-nnoremap <silent> <leader>e :FZF -m<CR>
 
 " snippets
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -302,10 +238,6 @@ let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_aggregate_errors = 1
-
-" Tagbar
-nmap <silent> <F4> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
 
 "" Buffer nav
 noremap <leader>p :bp<CR>
@@ -328,46 +260,13 @@ augroup vimrc-python
 augroup END
 
 " vim-jedi
-let g:jedi#usages_command = "<leader>p"
+let g:jedi#usages_command = "<leader>j"
 
 " syntastic
 let g:syntastic_python_checkers=['python', 'flake8']
 
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
-
-" Syntax highlight
-" Default highlight is better than polyglot
-let g:polyglot_disabled = ['python']
-let python_highlight_all = 1
-
-
-" ruby
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
-
-augroup vimrc-ruby
-  autocmd!
-  autocmd BufNewFile,BufRead *.rb,*.rbw,*.gemspec setlocal filetype=ruby
-  autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab softtabstop=2
-  autocmd FileType ruby compiler ruby
-  autocmd FileType puppet setlocal expandtab shiftwidth=2 softtabstop=2 colorcolumn=140 ai nu nowrap cul |
-        \ let g:syntastic_puppet_puppetlint_args = "--no-80chars-check --no-140chars-check  --no-autoloader_layout-check --no-2sp_soft_tabs-check --no-ensure_first_param-check"
-        " The previous line is needed to disable some checks in syntastic's puppet-lint checker. run `puppet-lint --help`
-        " to see checks and options
-augroup END
-
-let g:tagbar_type_ruby = {
-    \ 'kinds' : [
-        \ 'm:modules',
-        \ 'c:classes',
-        \ 'd:describes',
-        \ 'C:contexts',
-        \ 'f:methods',
-        \ 'F:singleton methods'
-    \ ]
-\ }
 
 " HTML
 " Ignore Apple's W3-invalid html code for pinned favicons
@@ -379,18 +278,6 @@ let g:syntastic_html_tidy_ignore_errors = [
     \   '<script> proprietary attribute "crossorigin"',
     \   '<script> proprietary attribute "integrity"'
     \ ]
-
-" RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-"map <Leader>s :call RunNearestSpec()<CR>
-"map <Leader>l :call RunLastSpec()<CR>
-"map <Leader>a :call RunAllSpecs()<CR>
-let g:rspec_command = ':call RunMySpecs("{spec}")'
-
-function! RunMySpecs(specs)
-  execute 'split | terminal bundle exec rake spec ' . a:specs
-  execute feedkeys("\<c-\>\<c-n>")
-endfunction
 
 "*****************************************************************************
 "" Convenience variables
@@ -442,7 +329,6 @@ noremap <leader>j :bp!<CR>
 
 "" Close buffer
 noremap <leader>c :bd<CR>
-
 
 syntax match TODOs ".*TODO.*\|.*BUG.*\|.*HACK.*"
 highlight TODOs ctermbg=red ctermfg=yellow term=bold,italic
