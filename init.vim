@@ -223,6 +223,9 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   nnoremap <leader>a :Ag<CR>
 endif
+" Ag for files
+cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+nnoremap <silent> <leader>e :FZF -m<CR>
 
 " snippets
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -259,11 +262,15 @@ augroup vimrc-python
       \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
 
+let g:python3_host_prog = "/Users/dgvigi/opt/anaconda3/bin/python"
+
 " vim-jedi
 let g:jedi#usages_command = "<leader>j"
 
 " syntastic
 let g:syntastic_python_checkers=['python', 'flake8']
+let g:syntastic_python_pylint_post_args="--max-line-length=120"
+let g:pymode_lint_ignore = "E501,W"
 
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
