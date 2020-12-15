@@ -30,6 +30,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'vim-syntastic/syntastic'
+  Plug 'roman/golden-ratio'
   " Required:
 call plug#end()
 
@@ -205,6 +206,10 @@ set autoread
 "" Split
 noremap <Leader>H :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
+nnoremap <Leader>h <C-W>h
+nnoremap <Leader>j <C-W>j
+nnoremap <Leader>k <C-W>k
+nnoremap <Leader>l <C-W>l
 
 " session management
 nnoremap <leader>so :OpenSession<Space>

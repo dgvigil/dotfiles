@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(sql
+     html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -40,8 +41,17 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ansible
      (auto-completion ::variables
-                      auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-snippets-in-popup t)
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0.1
+                      auto-completion-minimum-prefix-length 2
+                      auto-completion-idle-delay 0.2
+                      auto-completion-private-snippets-directory nil
+                      auto-completion-enable-snippets-in-popup nil
+                      auto-completion-enable-help-tooltip nil
+                      auto-completion-use-company-box nil
+                      auto-completion-enable-sort-by-usage nil)
      (colors :variables  colors-enable-nyan-cat-progress-bar t)
      better-defaults
      docker
@@ -65,6 +75,8 @@ This function should only modify configuration layer settings."
      terraform
      version-control
      yaml
+     django
+     docker
      treemacs)
 
 
@@ -241,7 +253,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 12.0
+                               :size 16.0
                                :weight normal
                                :width normal
                                :powerline-offset 2)
@@ -402,15 +414,6 @@ It should only modify the values of Spacemacs settings."
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
 
-   ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
-   ;; (default nil)
-   dotspacemacs-smartparens-strict-mode t
-
-   ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
-   ;; over any automatically added closing parenthesis, bracket, quote, etc...
-   ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
-   dotspacemacs-smart-closing-parenthesis nil
-
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
@@ -531,25 +534,11 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (module/misc/smartparens)
   (module/misc/yasnippet)
   (global-linum-mode)
   (setq multi-term-program "/bin/zsh")
   )
 
-;;;; Smart Parentheses
-(defun module/misc/smartparens ()
-  (use-package smartparens
-    :defer t
-    :diminish ""
-    :bind (("C-)" . sp-forward-slurp-sexp)
-           ("C-}" . sp-forward-barf-sexp)
-           ("C-(" . sp-splice-sexp))
-    :config
-    (progn
-      (add-hook 'smartparens-enabled-hook #'evil-smartparens-mode)
-      (push 'yas-installed-snippets-dir yas-snippet-dirs))
-    ))
 ;;;; Yasnippet
 (defun module/misc/yasnippet ()
   "Yassnippet bindings and config."
@@ -573,7 +562,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(jinja2-mode company-ansible ansible-doc ansible xterm-color vterm terminal-here shell-pop multi-term lsp-mode dash-functional flyspell-correct-helm flyspell-correct eshell-z eshell-prompt-extras esh-help company-terraform terraform-mode hcl-mode auto-dictionary vmd-mode emoji-cheat-sheet-plus company-emoji define-word yasnippet-snippets yapfify yaml-mode ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection spaceline-all-the-icons smeargle reveal-in-osx-finder restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements pcre2el password-generator paradox overseer osx-trash osx-dictionary osx-clipboard orgit org-superstar org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-brain open-junk-file nameless mwim move-text mmm-mode markdown-toc magit-svn magit-section magit-gitflow macrostep lorem-ipsum live-py-mode link-hint launchctl indent-guide importmagic hybrid-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-ls-git helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gh-md fuzzy font-lock+ flycheck-pos-tip flycheck-package flycheck-elsa flx-ido farmhouse-theme fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump dotenv-mode dockerfile-mode docker diminish devdocs cython-mode company-anaconda column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-compile ample-theme aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
+   '(sqlup-mode sql-indent web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data add-node-modules-path jinja2-mode company-ansible ansible-doc ansible xterm-color vterm terminal-here shell-pop multi-term lsp-mode dash-functional flyspell-correct-helm flyspell-correct eshell-z eshell-prompt-extras esh-help company-terraform terraform-mode hcl-mode auto-dictionary vmd-mode emoji-cheat-sheet-plus company-emoji define-word yasnippet-snippets yapfify yaml-mode ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection spaceline-all-the-icons smeargle reveal-in-osx-finder restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements pcre2el password-generator paradox overseer osx-trash osx-dictionary osx-clipboard orgit org-superstar org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-brain open-junk-file nameless mwim move-text mmm-mode markdown-toc magit-svn magit-section magit-gitflow macrostep lorem-ipsum live-py-mode link-hint launchctl indent-guide importmagic hybrid-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-ls-git helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ gh-md fuzzy font-lock+ flycheck-pos-tip flycheck-package flycheck-elsa flx-ido farmhouse-theme fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump dotenv-mode dockerfile-mode docker diminish devdocs cython-mode company-anaconda column-enforce-mode color-identifiers-mode clean-aindent-mode centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-compile ample-theme aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
