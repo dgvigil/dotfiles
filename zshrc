@@ -148,7 +148,6 @@ alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/co
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export HOMEBREW_GITHUB_API_TOKEN=70f6e50f72cefecabc3a35658c17d98b79070979
 if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 eval $(thefuck --alias)
 export http_proxy=http://wwwproxy.sandia.gov:80/
