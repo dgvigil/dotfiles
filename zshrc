@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/Users/dgvigi/opt/anaconda3/bin:/usr/local/opt/grep/libexec/gnubin:$PATH"
+export PATH="/Users/dgvigi/opt/anaconda3/bin:/usr/local/opt/grep/libexec/gnubin:$PATH:$(go env GOPATH)/bin"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/dgvigi/.oh-my-zsh"
