@@ -1,32 +1,23 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/Users/dgvigi/opt/anaconda3/bin:/usr/local/opt/grep/libexec/gnubin:$PATH:$(go env GOPATH)/bin"
+export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:${KREW_ROOT:-$HOME/.krew}/bin:$PATH:/usr/local/go/bin"
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/dgvigi/.oh-my-zsh"
+export ZSH="/home/dave/.oh-my-zsh"
+ZSH_DISABLE_COMPFIX=true
 
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/dgvigi/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/dgvigi/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/dgvigi/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/dgvigi/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-# <<< conda initialize <<<
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="junkfood"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -81,25 +72,13 @@ ZSH_THEME="junkfood"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Strange characters in prompt in Emacs multi-term #8682
-# https://github.com/ohmyzsh/ohmyzsh/issues/8682
-if [[ -n "$INSIDE_EMACS" ]]; then
-   # Which plugins would you like to load?
-   # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-   # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-   # Example format: plugins=(rails git textmate ruby lighthouse)
-   # Add wisely, as too many plugins slow down shell startup.
-   plugins=(git git-flow ansible kubectl docker terraform)
-   # export TERM=
-else
-  # Which plugins would you like to load?
-  # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-  # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-  # Example format: plugins=(rails git textmate ruby lighthouse)
-  # Add wisely, as too many plugins slow down shell startup.
-  plugins=(git git-flow ansible kubectl docker git-flow zsh-autosuggestions colorize terraform)
-  export TERM="xterm-256color"
-fi
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(fzf kube-ps1 git git-flow ansible kubectl docker git-flow zsh-autosuggestions colorize terraform)
+export TERM="xterm-256color"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -136,31 +115,31 @@ alias cp="cp -v"
 alias egrep="egrep --color --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias grep="egrep --color --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 alias gs='git status'
-alias vim='/usr/local/bin/nvim'
-alias emacs='/usr/local/bin/emacs -nw'
-alias e='/usr/local/bin/emacs -nw'
 alias ap='ansible-playbook '
-alias git='/usr/local/bin/git'
 alias k='kubectl'
 alias kns='kubens'
 alias kctx='kubectx'
-alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+alias vim='nvim'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ ! -f ~/.other-stuff.zsh ]] || source ~/.other-stuff.zsh
+
 if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
-eval $(thefuck --alias)
-export http_proxy=http://wwwproxy.sandia.gov:80/
-export https_proxy=http://wwwproxy.sandia.gov:80/
-export no_proxy="10.253.8.248,10.253.9.17,10.253.9.18,10.253.9.19,localhost,localnets,sandia.gov,127.0.0.1,169.254.169.254,10.0.0.0/8,192.168.0.0/16,cmp-images.sandia.gov"
-export ARM_CLIENT_SECRET="0@1/Cga:Rpqk_7UOyiwXSrrHzOiSWlO3"
-eval "$(_MOLECULE_COMPLETE=source molecule)"
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#
+echo
+echo "                         ██████╗ ██████╗ ███████╗███╗   ██╗███████╗██╗   ██╗███████╗███████╗ "
+echo "                         ██╔═══██╗██╔══██╗██╔════╝████╗  ██║██╔════╝██║   ██║██╔════╝██╔════╝"
+echo "                         ██║   ██║██████╔╝█████╗  ██╔██╗ ██║███████╗██║   ██║███████╗█████╗  "
+echo "                         ██║   ██║██╔═══╝ ██╔══╝  ██║╚██╗██║╚════██║██║   ██║╚════██║██╔══╝  "
+echo "                         ╚██████╔╝██║     ███████╗██║ ╚████║███████║╚██████╔╝███████║███████╗"
+echo "                          ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚══════╝╚══════╝"
+echo
+echo
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-
-source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+source "/home/dave/kube-ps1.sh"
 PS1='$(kube_ps1)'$PS1
 
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
